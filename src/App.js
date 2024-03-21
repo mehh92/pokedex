@@ -1,51 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; // Importez Routes
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; // Import de Link
+import Home from './pages/Home';
+import PokedexPage from './pages/PokedexPage';
+import './App.css'; // Import des styles CSS globaux
  
-import PokemonList from './PokemonList';
-import Pokedex from './Pokedex';
+const App = () => {
+    const [pokedex, setPokedex] = useState([]);
  
-function App() {
-  const [pokedex, setPokedex] = useState([]);
+    const addToPokedex = (pokemonName) => {
+        setPokedex([...pokedex, pokemonName]);
+    };
  
-  const addToPokedex = (pokemon) => {
-    setPokedex([...pokedex, pokemon]);
-    localStorage.setItem('pokedex', JSON.stringify([...pokedex, pokemon]));
-  };
+    const removeFromPokedex = (pokemonName) => {
+        setPokedex(pokedex.filter(name => name !== pokemonName));
+    };
  
-  const removeFromPokedex = (pokemon) => {
-    const updatedPokedex = pokedex.filter(p => p !== pokemon);
-    setPokedex(updatedPokedex);
-    localStorage.setItem('pokedex', JSON.stringify(updatedPokedex));
-  };
- 
-  useEffect(() => {
-    const savedPokedex = JSON.parse(localStorage.getItem('pokedex'));
-    if (savedPokedex) {
-      setPokedex(savedPokedex);
-    }
-  }, []);
- 
-  return (
+    return (
 <Router>
 <div>
 <nav>
 <ul>
 <li>
-<Link to="/">Pokemon List</Link>
+<Link to="/">Accueil</Link>
 </li>
 <li>
-<Link to="/pokedex">My Pokedex</Link>
+<Link to="/pokedex">Mon Pokédex</Link>
 </li>
 </ul>
 </nav>
  
-        <Routes> {/* Remplacez les routes par des Routes */}
-<Route path="/pokedex" element={<Pokedex pokedex={pokedex} removeFromPokedex={removeFromPokedex} />} />
-<Route path="/" element={<PokemonList addToPokedex={addToPokedex} />} />
+                <Routes>
+<Route path="/" element={<Home addToPokedex={addToPokedex} />} />
+<Route path="/pokedex" element={<PokedexPage pokedex={pokedex} removeFromPokedex={removeFromPokedex} />} />
 </Routes>
 </div>
 </Router>
-  );
-}
+    );
+};
  
 export default App;
