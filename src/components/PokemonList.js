@@ -57,13 +57,23 @@ const PokemonList = ({ addToPokedex }) => {
  
     return (
 <div>
-<h2>Liste des Pokémons</h2>
-<input
+{/* <h2>Pokémons</h2> */}
+{/* <input
     type="text"
     placeholder="Search Pokémon..."
     value={searchQuery}
     onChange={handleSearchChange}
-/>
+/> */}
+
+<div className="search-container">
+  <input
+    type="text"
+    placeholder="Search Pokémon..."
+    value={searchQuery}
+    onChange={handleSearchChange}
+  />
+</div>
+
 
 <div className="pokemon-list">
                 {/* {pokemonList.map((pokemon, index) => (
@@ -88,11 +98,19 @@ const PokemonList = ({ addToPokedex }) => {
 ))}
 
 </div>
-<div className="pagination">
+{/* <div className="pagination">
 <button onClick={handlePrevPage} disabled={currentPage === 1}>Page précédente</button>
 <span>Page {currentPage} / {totalPages}</span>
 <button onClick={handleNextPage} disabled={currentPage === totalPages}>Page suivante</button>
+</div> */}
+
+<div className="pagination">
+  <button onClick={handlePrevPage} disabled={currentPage === 1}>Page précédente</button>
+  <span>{currentPage} / {totalPages}</span>
+  <button onClick={handleNextPage} disabled={currentPage === totalPages}>Page suivante</button>
 </div>
+
+
 </div>
     );
 };

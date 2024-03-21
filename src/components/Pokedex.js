@@ -24,7 +24,7 @@ import React from 'react';
 const Pokedex = ({ pokedex, removeFromPokedex, removeAllFromPokedex }) => {
     return (
         <div>
-            <h2>Mon Pokédex</h2>
+            {/* <h2>Mon Pokédex</h2> */}
             <div className="pokedex-list">
                 {pokedex.map((pokemon, index) => (
                     <div key={index} className="pokemon-item">

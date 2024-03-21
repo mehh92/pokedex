@@ -40,7 +40,7 @@ const App = () => {
                 <nav>
                     <ul>
                         <li>
-                            <Link to="/">Accueil</Link>
+                            <Link to="/">Pokémons</Link>
                         </li>
                         <li>
                             <Link to="/pokedex">Mon Pokédex</Link>
