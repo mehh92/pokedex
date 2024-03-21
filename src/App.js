@@ -11,9 +11,14 @@ const App = () => {
         setPokedex([...pokedex, pokemonName]);
     };
  
-    const removeFromPokedex = (pokemonName) => {
-        setPokedex(pokedex.filter(name => name !== pokemonName));
+    // const removeFromPokedex = (pokemonName) => {
+    //     setPokedex(pokedex.filter(name => name !== pokemonName));
+    // };
+
+    const removeFromPokedex = (pokemonId) => {
+        setPokedex(pokedex.filter(pokemon => pokemon.id !== pokemonId));
     };
+    
  
     return (
 <Router>

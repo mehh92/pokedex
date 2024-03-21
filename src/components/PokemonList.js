@@ -5,6 +5,8 @@ const PokemonList = ({ addToPokedex }) => {
     const [pokemonList, setPokemonList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    const [searchQuery, setSearchQuery] = useState('');
+
  
     useEffect(() => {
         const fetchPokemonList = async () => {
@@ -36,6 +38,16 @@ const PokemonList = ({ addToPokedex }) => {
             setCurrentPage(currentPage + 1);
         }
     };
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value.toLowerCase());
+    };
+
+    const filteredPokemonList = pokemonList.filter(pokemon => 
+        pokemon.name.toLowerCase().includes(searchQuery)
+    );
+    
+    
  
     const handlePrevPage = () => {
         if (currentPage > 1) {
@@ -46,16 +58,35 @@ const PokemonList = ({ addToPokedex }) => {
     return (
 <div>
 <h2>Liste des Pokémons</h2>
+<input
+    type="text"
+    placeholder="Search Pokémon..."
+    value={searchQuery}
+    onChange={handleSearchChange}
+/>
+
 <div className="pokemon-list">
-                {pokemonList.map((pokemon, index) => (
+                {/* {pokemonList.map((pokemon, index) => (
 <div key={index} className="pokemon-item">
 <p>{pokemon.name}</p>
 <p>ID: {pokemon.id}</p>
 <p>Types: {pokemon.types.join(', ')}</p>
 <img src={pokemon.image} alt={pokemon.name} />
-<button onClick={() => addToPokedex(pokemon.name)}>Ajouter au Pokédex</button>
-</div>
-                ))}
+{/* <button onClick={() => addToPokedex(pokemon.name)}>Ajouter au Pokédex</button> */}
+{/* <button onClick={() => addToPokedex(pokemon)}>Ajouter au Pokédex</button>
+</div> */}
+                {/* ))} */} 
+
+                {filteredPokemonList.map((pokemon, index) => (
+    <div key={index} className="pokemon-item">
+        <p>{pokemon.name}</p>
+        <p>ID: {pokemon.id}</p>
+        <p>Types: {pokemon.types.join(', ')}</p>
+        <img src={pokemon.image} alt={pokemon.name} />
+        <button onClick={() => addToPokedex(pokemon)}>Ajouter au Pokédex</button>
+    </div>
+))}
+
 </div>
 <div className="pagination">
 <button onClick={handlePrevPage} disabled={currentPage === 1}>Page précédente</button>
