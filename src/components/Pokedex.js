@@ -1,4 +1,5 @@
 import React from 'react';
+
  
 // const Pokedex = ({ pokedex, removeFromPokedex }) => {
 //     return (
@@ -16,7 +17,11 @@ import React from 'react';
 //     );
 // };
 
-const Pokedex = ({ pokedex, removeFromPokedex }) => {
+// const clearPokedex = () => {
+//     localStorage.clear();
+// };
+
+const Pokedex = ({ pokedex, removeFromPokedex, removeAllFromPokedex }) => {
     return (
         <div>
             <h2>Mon Pokédex</h2>
@@ -29,9 +34,11 @@ const Pokedex = ({ pokedex, removeFromPokedex }) => {
                         <img src={pokemon.image} alt={pokemon.name} />
                         {/* Now, you might want to adjust the removeFromPokedex call to use a unique identifier like pokemon.id */}
                         <button onClick={() => removeFromPokedex(pokemon.id)}>Supprimer</button>
+                        
                     </div>
                 ))}
             </div>
+            <button onClick={() => removeAllFromPokedex()}>Vider le Pokédex</button>
         </div>
     );
 };
