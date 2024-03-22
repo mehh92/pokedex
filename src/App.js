@@ -18,7 +18,6 @@ const App = () => {
     }, [pokedex]);
 
     const addToPokedex = (pokemon) => {
-        // Add a new pokemon to the pokedex state
         setPokedex(prev => [...prev, pokemon]);
     };
 
@@ -49,7 +48,6 @@ const App = () => {
                 </nav>
                 <Routes>
                     <Route path="/" element={<Home addToPokedex={addToPokedex} />} />
-                    {/* <Route path="/pokedex" element={<PokedexPage pokedex={pokedex} removeFromPokedex={removeFromPokedex} clearPokedex={clearPokedex} />} /> */}
                     <Route path="/pokedex" element={<PokedexPage pokedex={pokedex} removeFromPokedex={removeFromPokedex} removeAllFromPokedex={removeAllFromPokedex} />} />
 
                 </Routes>
